@@ -1,0 +1,8 @@
+aws_region        = "us-east-1"
+project           = "IOT-DEMO"
+owner             = "juned.memon"
+environment       = "prod"
+aws_ssh_key_name  = "james-enbuild-dev"
+security_group_id = "sg-0b942c4eb99342197"
+instance_type     = "t3.medium"
+schedule          = "on=(M,01);off=(F,23);tz=ist"
