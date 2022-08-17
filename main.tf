@@ -18,6 +18,16 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
+data "aws_ami" "amazon-2" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["amzn2-ami-hvm-*-x86_64-ebs"]
+  }
+  owners = ["amazon"]
+}
+
 data "aws_subnet_ids" "default" {
   vpc_id = data.aws_vpc.default.id
 }
@@ -37,7 +47,7 @@ data "cloudinit_config" "userData" {
 }
 
 resource "aws_instance" "k3s" {
-  ami                         = data.aws_ami.ubuntu.id
+  ami                         = data.aws_ami.amazon-2.id
   associate_public_ip_address = true
   instance_type               = var.instance_type
   key_name                    = var.aws_ssh_key_name
