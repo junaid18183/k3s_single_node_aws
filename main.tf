@@ -58,7 +58,8 @@ resource "aws_instance" "k3s" {
     "Name"     = "${var.project}-k3s"
   }
   vpc_security_group_ids = [var.security_group_id]
-  lifecycle {
-    ignore_changes = [ebs_block_device]
+  root_block_device {
+    volume_size = 100
+    volume_type = "gp3"
   }
 }
